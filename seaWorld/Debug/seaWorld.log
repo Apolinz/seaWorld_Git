@@ -1,2 +1,10 @@
-﻿  variables.cpp
-  seaWorld.vcxproj -> C:\ProjectC\seaWorld\Debug\seaWorld.exe
+﻿  stdafx.cpp
+  fish.cpp
+  programSystem.cpp
+C:\ProjectC\seaWorld_Git\seaWorld\programSystem.cpp(43): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  seaLogic.cpp
+  seaWorld.cpp
+  shark.cpp
+  variables.cpp
+  正在生成代码...
+  seaWorld.vcxproj -> C:\ProjectC\seaWorld_Git\Debug\seaWorld.exe
