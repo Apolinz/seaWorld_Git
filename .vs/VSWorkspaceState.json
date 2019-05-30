@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\seaWorld"
   ],
-  "SelectedNode": "\\readme.md",
+  "SelectedNode": "\\seaWorld\\programSystem.cpp",
   "PreviewInSolutionExplorer": false
 }

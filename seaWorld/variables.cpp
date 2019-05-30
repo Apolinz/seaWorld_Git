@@ -9,21 +9,12 @@
 #include <easyx.h>
 #include <conio.h>
 
-int arrayX = 100;      	// Ocean width
-int arrayY = 100;       // Ocean height
-int LIMIT = 100;   	// Must match array bounds, expects ocean to be square
+int arrayX = 80;      	// Ocean width
+int arrayY = 80;       // Ocean height
+int LIMIT = 80;   	// Must match array bounds, expects ocean to be square
 const char WATER = '.';
 const char FISH = 'F';
 const char SHARK = 'S';
-
-/*
-char oceanNext[arrayX][arrayY];
-char ocean[arrayX][arrayY];
-int breed[arrayX][arrayY];
-int breedNext[arrayX][arrayY];
-int starve[arrayX][arrayY];
-int starveNext[arrayX][arrayY];
-*/
 
 char** oceanNext = new char* [arrayX];
 char** ocean = new char* [arrayX];

@@ -2,9 +2,12 @@
 #include "programSystem.h"
 #include "seaLogic.h"
 #include "variables.h"
+#include <iostream>
 #include <vector>
 #include <easyx.h>
 #include <time.h>
+#include <typeinfo>
+
 
 extern int totalFish;
 extern int totalSharks;
@@ -32,7 +35,39 @@ extern int** breedNext;
 extern int** starve;
 extern int** starveNext;
 
-//
+void setUpGUI() {
+	char defaultChar[10];
+	char jungle[10] = "d";
+	std::cout << "input the width of the sea(input 'd' to pass):";
+	std::cin >> defaultChar;
+	if (strcmp(defaultChar,jungle) == 0) {
+		LIMIT = 10;
+	}
+	else {
+		sscanf_s(defaultChar, "%d", &LIMIT);
+	}
+	arrayX = LIMIT;
+	arrayY = LIMIT;
+
+	std::cout << "input the number of the shark(input 'd' to pass):";
+	std::cin >> defaultChar;
+	if (strcmp(defaultChar, jungle) == 0) {
+		allSharks = 10;
+	}
+	else {
+		sscanf_s(defaultChar, "%d", &allSharks);
+	}
+
+	std::cout << "input the number of the fish(input 'd' to pass):";
+	std::cin >> defaultChar;
+	if (strcmp(defaultChar, jungle) == 0) {
+		allFish = 10;
+	}
+	else {
+		sscanf_s(defaultChar, "%d", &allFish);
+	}
+}
+
 void initialized() {
 	initDynamicArray(oceanNext);
 	initDynamicArray(ocean);
@@ -43,10 +78,6 @@ void initialized() {
 	srand(time(NULL));
 	create();
 	initgraph(1920, 1080);
-}
-
-void featureSwitch() {
-
 }
 
 void drawTheSea() {
