@@ -9,5 +9,3 @@ void print();
 void drawWater(int positionLeft, int positionTop);
 void drawOcean();
 void breedOrStarveToDeath();
-
-

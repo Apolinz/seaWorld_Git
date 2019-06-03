@@ -3,10 +3,15 @@
 #include "seaLogic.h"
 #include "variables.h"
 #include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
 #include <vector>
 #include <easyx.h>
 #include <time.h>
 #include <typeinfo>
+#include <conio.h>
+#include <TCHAR.h>
 
 
 extern int totalFish;
@@ -35,6 +40,7 @@ extern int** breedNext;
 extern int** starve;
 extern int** starveNext;
 
+/*
 void setUpGUI() {
 	char defaultChar[10];
 	char jungle[10] = "d";
@@ -45,6 +51,9 @@ void setUpGUI() {
 	}
 	else {
 		sscanf_s(defaultChar, "%d", &LIMIT);
+		if (LIMIT <= 0) {
+			LIMIT = 10;
+		}
 	}
 	arrayX = LIMIT;
 	arrayY = LIMIT;
@@ -66,6 +75,19 @@ void setUpGUI() {
 	else {
 		sscanf_s(defaultChar, "%d", &allFish);
 	}
+}
+*/
+
+void setUpGUI() {
+	char inputNum[10];
+	initgraph(600, 400);
+	InputBox(inputNum, 10, _T("please input the width of the sea"));
+	sscanf_s(inputNum, "%d", &LIMIT);
+	InputBox(inputNum, 10, _T("please input the number of the shark"));
+	sscanf_s(inputNum, "%d", &totalSharks);
+	InputBox(inputNum, 10, _T("please input the number of the fish"));
+	sscanf_s(inputNum, "%d", &totalFish);
+
 }
 
 void initialized() {
