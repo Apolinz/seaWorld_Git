@@ -33,8 +33,8 @@ extern int** starveNext;
 
 //Initalized the start-up array for the simulate
 void populateAllArrays() {
-	for (int i = 0; i < arrayX; ++i) {
-		for (int k = 0; k < arrayY; ++k) {
+	for (int i = 0; i <= LIMIT; ++i) {
+		for (int k = 0; k <= LIMIT; ++k) {
 			ocean[i][k] = WATER;
 			oceanNext[i][k] = WATER;
 			breed[i][k] = 0;
@@ -53,8 +53,8 @@ int randomGen(long int range) {
 void updateOceanContents(char** toOcean, char** fromOcean,
 	int** toBreed, int** fromBreed,
 	int** toStarve, int** fromStarve) {
-	for (int i = 0; i < LIMIT; ++i) {
-		for (int k = 0; k < LIMIT; ++k) {
+	for (int i = 0; i <= LIMIT; ++i) {
+		for (int k = 0; k <= LIMIT; ++k) {
 			toOcean[i][k] = fromOcean[i][k];
 			toBreed[i][k] = fromBreed[i][k];
 			toStarve[i][k] = fromStarve[i][k];
@@ -70,7 +70,7 @@ void updateOceanContents(char** toOcean, char** fromOcean,
 void updateTotals() {
 	allSharks = 0;
 	allFish = 0;
-	for (int i = 0; i < LIMIT; ++i) {
+	for (int i = 0; i <= LIMIT; ++i) {
 		for (int k = 0; k < LIMIT; ++k) {
 			if (ocean[i][k] == FISH) {
 				++allFish;
@@ -119,7 +119,7 @@ int getMoveDirection(char type, int xpos, int ypos) {
 	if ((type == FISH) || ((type == SHARK) && (neighbours.size() == 0))) {
 		if (type == SHARK) {
 			starve[xpos][ypos]++;
-		} // No neighbouring fish - decrement starve time.
+		} // No neighbouring fish - decide the fish die or not die
 		if (ocean[xpos - 1][ypos] == WATER) {
 			neighbours.push_back(1);
 		}
@@ -208,8 +208,8 @@ void simulate() {
 
 //The function the decide whether the creatures breed or died
 void breedOrStarveToDeath() {
-	for (int xPosition = 0; xPosition <= arrayX; xPosition++) {
-		for (int yPosition = 0; yPosition <= arrayY;yPosition++) {
+	for (int xPosition = 0; xPosition <= LIMIT; xPosition++) {
+		for (int yPosition = 0; yPosition <= LIMIT;yPosition++) {
 			if (totalFish >= 2 && ocean[xPosition][yPosition] == FISH) {
 				if (breed[xPosition][yPosition] >= fishBreedTime) {
 					if (ocean[(xPosition + 1) % arrayX][yPosition] == WATER) {
@@ -301,6 +301,7 @@ void drawWater(int positionLeft, int positionTop) {
 void drawOcean() {
 	int drawPositionX = 0;
 	int	drawPositionY = 0;
+	BeginBatchDraw();
 	for (int i = 0; i < LIMIT; ++i) {
 		for (int k = 0; k < LIMIT; ++k) {
 			if (ocean[i][k] == WATER) {
@@ -313,9 +314,11 @@ void drawOcean() {
 				drawFish(drawPositionX, drawPositionY);
 			}
 			drawPositionX += drawSize;
+			//Sleep(10);
 		}
 		drawPositionX = 0;
 		drawPositionY += drawSize;
 	}
+	FlushBatchDraw();
 }
 

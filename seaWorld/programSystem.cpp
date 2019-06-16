@@ -39,6 +39,10 @@ extern int** breed;
 extern int** breedNext;
 extern int** starve;
 extern int** starveNext;
+static int waterNum = 0;
+static int fishNum = 0;
+static int sharkNum = 0;
+
 
 /*
 void setUpGUI() {
@@ -80,14 +84,16 @@ void setUpGUI() {
 
 void setUpGUI() {
 	char inputNum[10];
-	initgraph(600, 400);
+	initgraph(1000, 1000);
 	InputBox(inputNum, 10, _T("please input the width of the sea"));
 	sscanf_s(inputNum, "%d", &LIMIT);
+	arrayX = LIMIT;
+	arrayY = LIMIT;
 	InputBox(inputNum, 10, _T("please input the number of the shark"));
 	sscanf_s(inputNum, "%d", &totalSharks);
 	InputBox(inputNum, 10, _T("please input the number of the fish"));
 	sscanf_s(inputNum, "%d", &totalFish);
-
+	closegraph();
 }
 
 void initialized() {
@@ -119,6 +125,7 @@ void drawTheSea() {
 	} while (true);
 }
 
+
 void printTheSea() {
 	do {
 		print();
@@ -135,3 +142,129 @@ void printTheSea() {
 		}
 	} while(true);
 }
+
+/*void transformDataToCode() {
+	int checkFlag = 0;//checkFlag Water:0 Fish:1 Shark:2
+	int printX = 0;
+	int printY = 0;
+	int gapSize = 18;
+	char textToPrint[5];
+	char endlLine[] = "/n";
+	char splitData[] = "|";
+	do {
+		for (int countWidth = 0; countWidth < LIMIT; countWidth++) {
+			for (int countHeight = 0; countHeight < LIMIT; countHeight++) {
+				if (oceanNext[countWidth][countHeight] = WATER) {
+					if (checkFlag != 0) {
+						checkFlag = 0;
+						if (checkFlag = 1) {
+							//outtextxy(printX, printY, "F");
+							//printX += gapSize;
+							outtext(FISH);
+							sprintf_s(textToPrint, "%d", fishNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							//outtextxy(printX, printY, "|");
+							outtext('/n');
+							//printX += gapSize;
+							fishNum = 0;
+						}
+						if (checkFlag = 2) {
+							//outtextxy(printX, printY, "S");
+							//printX += gapSize;
+							outtext(SHARK);
+							sprintf_s(textToPrint, "%d", sharkNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							//outtextxy(printX, printY, "|");
+							outtext(endlLine);
+							//printX += gapSize;
+							sharkNum = 0;
+						}
+					}
+					waterNum++;
+				}
+				if (oceanNext[countWidth][countHeight] = FISH) {
+					if (checkFlag != 1) {
+						checkFlag = 1;
+						if (checkFlag = 0) {
+							//outtextxy(printX, printY, ".");
+							//printX += gapSize;
+							outtext(WATER);
+							sprintf_s(textToPrint, "%d", waterNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							//outtextxy(printX, printY, "|");
+							outtext(endlLine);
+							//printX += gapSize;
+							waterNum = 0;
+						}
+						if (checkFlag = 2) {
+							//outtextxy(printX, printY, "S");
+							outtext(SHARK);
+							//printX += gapSize;
+							sprintf_s(textToPrint, "%d", sharkNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							//outtextxy(printX, printY, "|");
+							outtext(endlLine);
+							//printX += gapSize;
+							sharkNum = 0;
+						}
+					}
+					fishNum++;
+				}
+				if (oceanNext[countWidth][countHeight] = SHARK) {
+					if (checkFlag != 2) {
+						checkFlag = 0;
+						if (checkFlag = 0) {
+							//outtextxy(printX, printY, ".");
+							outtext(WATER);
+							//printX += gapSize;
+							sprintf_s(textToPrint, "%d", waterNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							//outtextxy(printX, printY, "|");
+							outtext(endlLine);
+							//printX += gapSize;
+							waterNum = 0;
+						}
+						if (checkFlag = 1) {
+							//outtextxy(printX, printY, "F");
+							outtext(FISH);
+							//printX += gapSize;
+							sprintf_s(textToPrint, "%d", fishNum);
+							outtext(textToPrint);
+							outtext(splitData);
+							//printX += gapSize;
+							outtext(endlLine);
+							//outtextxy(printX, printY, "|");
+							//printX += gapSize;
+							fishNum = 0;
+						}
+					}
+					sharkNum++;
+				}
+				//printX += gapSize;
+			}
+			//printX = 0;
+			//printY += gapSize;
+		}
+		//printX = 0;
+		//printY = 0;
+		if (_getch() == 's') {
+			cleardevice();
+			drawTheSea();
+		}
+		else {
+			cleardevice();
+		}
+	}while(true);
+}*/
+
+

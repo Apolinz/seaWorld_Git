@@ -45,13 +45,13 @@ int drawSize = 10;
 
 //initilize the array dynamicly
 void initDynamicArray(char** dynamicArray) {
-	for (int arrayWidth = 0; arrayWidth <= arrayY; arrayWidth++) {
-		dynamicArray[arrayWidth] = new char[arrayY];
+	for (int arrayWidth = 0; arrayWidth <= LIMIT; arrayWidth++) {
+		dynamicArray[arrayWidth] = new char[LIMIT];
 	}
 }
 
 void initDynamicArray(int** dynamicArray) {
-	for (int arrayWidth = 0; arrayWidth <= arrayY; arrayWidth++) {
-		dynamicArray[arrayWidth] = new int[arrayY];
+	for (int arrayWidth = 0; arrayWidth <= LIMIT; arrayWidth++) {
+		dynamicArray[arrayWidth] = new int[LIMIT];
 	}
 }
